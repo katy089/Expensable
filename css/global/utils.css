@@ -73,6 +73,9 @@
 .wrap {
   flex-wrap: wrap;
 }
+.justify-between {
+  justify-content: space-between;
+}
 
 .gap-2 {
   gap: 0.5rem;
