@@ -1,48 +1,14 @@
-const BASE_URI = "https://expensable-api.herokuapp.com";
-const tokenKey = "expensable_key";
+import { tokenKey } from "../config.js";
+import apiFetch from "./api-fetch.js";
 
 async function login(credentials = { email, password }) {
-  const response = await fetch(`${BASE_URI}/login`, {
-    method: "POST",
-    body: JSON.stringify(credentials),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  let data;
-  try {
-    data = await response.json();
-  } catch (error) {
-    data = response.statusText;
-  }
-  if (!response.ok) {
-    throw new Error(data.errors);
-  }
-
-  sessionStorage.setItem(tokenKey, data.token);
-  return data;
+  const { token, ...user } = await apiFetch("/login", { body: credentials });
+  sessionStorage.setItem(tokenKey, token);
+  return user;
 }
 async function logout() {
-  const token = sessionStorage.getItem(tokenKey);
-  const response = await fetch(`${BASE_URI}/logout`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Token token=${token}`,
-    },
-  });
-  // console.log(response);
-  let data;
-  try {
-    data = await response.json();
-  } catch (error) {
-    data = response.statusText;
-  }
-  if (!response.ok) {
-    throw new Error(data.errors);
-  }
-
+  const response = await apiFetch("/logout", { method: "DELETE" });
   sessionStorage.removeItem(tokenKey);
-  return data;
+  return response;
 }
 export { login, logout };
