@@ -2,7 +2,6 @@ import { tokenKey } from "./scripts/config.js";
 import DOMHandler from "./scripts/dom_handler.js";
 import HomePage from "./scripts/pages/home-page.js";
 import LoginPage from "./scripts/pages/login-page.js";
-import { login } from "./scripts/services/sessions-service.js";
 import { getUser } from "./scripts/services/user-service.js";
 
 async function init() {
@@ -21,5 +20,4 @@ async function init() {
     DOMHandler.load(LoginPage);
   }
 }
-// login({ email: "test3@mail.com", password: "123456" });
 init();
