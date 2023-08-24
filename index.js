@@ -3,6 +3,7 @@ import DOMHandler from "./scripts/dom_handler.js";
 import HomePage from "./scripts/pages/home-page.js";
 import LoginPage from "./scripts/pages/login-page.js";
 import { getUser } from "./scripts/services/user-service.js";
+import STORE from "./scripts/store.js";
 
 async function init() {
   try {
@@ -11,7 +12,8 @@ async function init() {
     if (!token) return DOMHandler.load(LoginPage);
 
     const user = await getUser();
-    console.log(user);
+    STORE.user = user;
+    STORE.fetchCategories();
     //HomePage
     DOMHandler.load(HomePage);
   } catch (error) {
