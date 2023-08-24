@@ -1,7 +1,7 @@
 import { tokenKey } from "../config.js";
 import apiFetch from "./api-fetch.js";
 
-async function createUser(
+export async function createUser(
   newUser = {
     email,
     password,
@@ -14,7 +14,7 @@ async function createUser(
   sessionStorage.setItem(tokenKey, token);
   return user;
 }
-async function updateUser(
+export async function updateUser(
   data = {
     email,
     first_name,
@@ -23,5 +23,9 @@ async function updateUser(
   }
 ) {
   const user = await apiFetch("/profile", { body: data, method: "PATCH" });
+  return user;
+}
+export async function getUser() {
+  const user = await apiFetch("/profile");
   return user;
 }
