@@ -27,6 +27,9 @@ function deleteCategory(id) {
     this.income = this.income.filter((category) => category.id != id);
   }
 }
+function addCategory(newCategory) {
+  this[this.currentTab].push(newCategory);
+}
 const STORE = {
   user: null,
   income: [],
@@ -35,5 +38,6 @@ const STORE = {
   fetchCategories,
   currentCategories,
   deleteCategory,
+  addCategory,
 };
 export default STORE;
