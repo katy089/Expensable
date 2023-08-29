@@ -7,3 +7,9 @@ To develop this web application, we took into account several important resource
 - [API was developed in Ruby on Rails](https://github.com/codeableorg/expensable-api)
 
 - [GIST general functions](https://gist.github.com/pazteddy/0d55854fdd0e38d68448c7cd2cb03202)
+
+Usuario:
+test3@mail.com
+
+Contraseña 
+123456
